@@ -1,67 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".PomodoroActivity">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="hour"
+            type="String" />
+
+        <variable
+            name="minute"
+            type="String" />
+
+        <variable
+            name="second"
+            type="String" />
+
+        <variable
+            name="progress"
+            type="int" />
+
+        <variable
+            name="maxProgress"
+            type="int" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".PomodoroActivity">
 
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeProgressBar">
-
-        <Button
-            android:id="@+id/startButton"
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="35dp"
-            android:background="@drawable/bgbtnred"
-            android:text="Start"
-            android:textColor="#fff"
-            app:layout_constraintEnd_toStartOf="@+id/stopButtno"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="541dp" />
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timeProgressBar">
 
-        <Button
-            android:id="@+id/stopButtno"
+            <Button
+                android:id="@+id/startPauseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/bgbtnred"
+                android:text="start"
+                android:textColor="#fff"
+                app:layout_constraintEnd_toStartOf="@+id/resetButtno"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteY="541dp" />
+
+            <Button
+                android:id="@+id/resetButtno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bgbtnred"
+                android:text="reset"
+                android:visibility="invisible"
+                android:textColor="#fff"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="234dp"
+                tools:layout_editor_absoluteY="541dp" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/timeProgressBar"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:max="@{maxProgress}"
+            android:progress="@{progress}"
+            android:progressDrawable="@drawable/circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/timer1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{hour}"
+            android:textSize="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/timeProgressBar"
+            app:layout_constraintEnd_toEndOf="@+id/timeProgressBar"
+            app:layout_constraintHorizontal_bias="0.282"
+            app:layout_constraintStart_toStartOf="@+id/timeProgressBar"
+            app:layout_constraintTop_toTopOf="@+id/timeProgressBar" />
+
+        <TextView
+            android:id="@+id/spacer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:textSize="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/timeProgressBar"
+            app:layout_constraintEnd_toEndOf="@+id/timeProgressBar"
+            app:layout_constraintHorizontal_bias="0.403"
+            app:layout_constraintStart_toStartOf="@+id/timeProgressBar"
+            app:layout_constraintTop_toTopOf="@+id/timeProgressBar" />
+
+        <TextView
+            android:id="@+id/timer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{minute}"
+            android:textSize="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/timeProgressBar"
+            app:layout_constraintEnd_toEndOf="@+id/timeProgressBar"
+            app:layout_constraintStart_toStartOf="@+id/timeProgressBar"
+            app:layout_constraintTop_toTopOf="@+id/timeProgressBar" />
+
+        <TextView
+            android:id="@+id/spacer2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:textSize="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/timeProgressBar"
+            app:layout_constraintEnd_toEndOf="@+id/timeProgressBar"
+            app:layout_constraintHorizontal_bias="0.593"
+            app:layout_constraintStart_toStartOf="@+id/timeProgressBar"
+            app:layout_constraintTop_toTopOf="@+id/timeProgressBar" />
+
+        <TextView
+            android:id="@+id/timer3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{second}"
+            android:textSize="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/timeProgressBar"
+            app:layout_constraintEnd_toEndOf="@+id/timeProgressBar"
+            app:layout_constraintHorizontal_bias="0.713"
+            app:layout_constraintStart_toStartOf="@+id/timeProgressBar"
+            app:layout_constraintTop_toTopOf="@+id/timeProgressBar" />
+
+        <Button
+            android:id="@+id/infoButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/bgbtnred"
-            android:text="Stop"
+            android:text="i"
+            android:textAllCaps="false"
             android:textColor="#fff"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="234dp"
-            tools:layout_editor_absoluteY="541dp" />
+            android:textSize="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/menuButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bgbtnred"
+            android:text="menu"
+            android:textColor="#fff"
+            app:layout_constraintEnd_toStartOf="@+id/infoButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
-    <ProgressBar
-        android:id="@+id/timeProgressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:indeterminateTint="@color/colorPomo"
-        tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/tasksButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bgbtnred"
+            android:text="tasks"
+            android:textColor="#fff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/infoButton"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/timerText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="00:00:00"
-        android:textSize="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/timeProgressBar"
-        app:layout_constraintEnd_toEndOf="@+id/timeProgressBar"
-        app:layout_constraintStart_toStartOf="@+id/timeProgressBar"
-        app:layout_constraintTop_toTopOf="@+id/timeProgressBar" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
